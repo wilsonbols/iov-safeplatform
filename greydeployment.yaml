@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: safeplatform-{{NEWVER}}
+  namespace: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: safeplatform
+  template:
+    metadata:
+      labels:
+        app: safeplatform
+        version: {{NEWVER}}
+      annotations:
+        sidecar.istio.io/inject: 'true'
+    spec:
+      containers:
+        - name: safeplatform
+          image: swr.cn-north-4.myhuaweicloud.com/iov-workshop/safeplatform:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "200m"
+      imagePullSecrets:
+        - name: hwbj
+      restartPolicy: Always

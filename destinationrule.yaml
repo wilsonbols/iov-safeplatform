@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  labels:
+    app: safeplatform
+  name: safeplatform
+  namespace: test
+spec:
+  host: safeplatform
+  subsets:
+    - labels:
+        version: v71
+      name: v71
+    - labels:
+        version: vgrey27
+      name: vgrey27

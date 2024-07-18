@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 99%;">
+
+<head>
+    <meta charset="utf-8">
+    <title>Vehicle Networking Security Alarm Platform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <!-- Le styles -->
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+    <!--    <script type="text/javascript" src="assets/js/jquery-3.1.1.min.js"></script>-->
+    <script type="text/javascript" src="assets/js/stomp.umd.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/loader-style.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+
+    <link rel="stylesheet" href="assets/js/button/ladda/ladda.min.css">
+
+    <link rel="shortcut icon" href="assets/ico/minus.png">
+
+    <link href="assets/js/footable/css/footable.core.css?v=2-0-1" rel="stylesheet" type="text/css" />
+    <link href="assets/js/footable/css/footable.standalone.css" rel="stylesheet" type="text/css" />
+    <link href="assets/js/footable/css/footable-demos.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="assets/js/dataTable/lib/jquery.dataTables/css/DT_bootstrap.css" />
+    <link rel="stylesheet" href="assets/js/dataTable/css/datatables.responsive.css" />
+
+    <link rel="stylesheet" href="assets/css/language-switcher.css">
+    <script src="language/language-resources.js"></script>
+    <script src="assets/js/language-switcher.js"></script>
+    <!-- <script>
+        if (!window.location.href.includes("lang=English"))
+            window.location.href = "carinfo.html?lang=English";
+    </script> -->
+</head>
+
+<body>
+    <script>
+        !function (x, n) {
+            window[n] = window[n] || {};
+            window[n].config = { appId: "7ef5851d9ca647218c1d9c74191ac8b0", apiRepo: true, thirdApi: true, hashMode: true, JsErrClean: true, smartJsErr: true, webResource: true, traceType: "apm", };
+            var o = document.createElement('script');
+            o.src = x, o.async = !0;
+            var d = document.body.firstChild;
+            document.body.insertBefore(o, d);
+        }('https://res.hc-cdn.com/js-agent-cdn/1.0.43/jsagent.min.js', '__fr');
+    </script>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+    <!-- TOP NAVBAR -->
+    <nav role="navigation" class="navbar navbar-static-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" class="navbar-toggle"
+                    type="button">
+                    <span class="entypo-menu"></span>
+                </button>
+                <button class="navbar-toggle toggle-menu-mobile toggle-left" type="button">
+                    <span class="entypo-list-add"></span>
+                </button>
+                <div id="logo-mobile" class="visible-xs">
+                    <h2>Vehicle Alarm Platform
+                        <span>v3.4.12</span>
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+
+                    <li class="dropdown">
+
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:20px;"
+                                class="icon-conversation"></i>
+                            <div class="noft-red">23</div>
+                        </a>
+
+
+                        <ul style="margin: 11px 0 0 9px;" role="menu" class="dropdown-menu dropdown-wrap">
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle"
+                                        src="http://api.randomuser.me/portraits/thumb/men/1.jpg"><span>Vehicle Collision</span><b>Vehicle Collision</b> </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle"
+                                        src="http://api.randomuser.me/portraits/thumb/women/1.jpg"><span>Vehicle Collision Rollover </span><b>3 Minutes Ago</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle"
+                                        src="http://api.randomuser.me/portraits/thumb/men/2.jpg"><span>Vehicle Collision </span><b>2 Hours Ago</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle"
+                                        src="http://api.randomuser.me/portraits/thumb/men/3.jpg"><i>Vehicle Collision</i> <b>1 Day Ago</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle"
+                                        src="http://api.randomuser.me/portraits/thumb/men/4.jpg"><i>Vehicle Collision</i> <b>2 Months Ago</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>                                
+                                <div>View All Alarms</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i data-toggle="tooltip" data-placement="bottom" style="font-size:20px;"
+                                class="icon-help tooltitle"></i></a>
+                    </li>
+
+                </ul>
+                <div id="nt-title-container" class="navbar-left running-text visible-lg">
+                    <ul class="date-top">
+                        <li class="entypo-calendar" style="margin-right:5px"></li>
+                        <li id="Date"></li>
+                    </ul>
+
+                    <ul id="digital-clock" class="digital">
+                        <li class="entypo-clock" style="margin-right:5px"></li>
+                        <li class="hour"></li>
+                        <li>:</li>
+                        <li class="min"></li>
+                        <li>:</li>
+                        <li class="sec"></li>
+                        <li class="meridiem"></li>
+                    </ul>
+                    <ul id="nt-title">
+                        <li>
+                            <i class="wi-day-cloudy"></i><span> Beijing</span><b> 1</b>
+                            <i class="wi-celcius"></i>; 15km/h
+                        </li>
+                        <li>
+                            <i class="wi-day-lightning"></i><span> Shanghai</span><b> 12</b>
+                            <i class="wi-celcius"></i>; 13km/h
+                        </li>
+                    </ul>
+                </div>
+
+                <ul style="margin-right:0;" class="nav navbar-nav navbar-right">
+                    <li>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <img alt="" class="admin-pic img-circle"
+                                src="http://api.randomuser.me/portraits/thumb/men/10.jpg"><span>Hello, user </span><b class="caret"></b>
+                        </a>
+                        <ul style="margin-top:14px;" role="menu" class="dropdown-setting dropdown-menu">
+                            <li>
+                                <a href="#">
+                                    <span class="entypo-user"></span><span>  My Account</span></a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="entypo-lifebuoy"></span><span>  Help</span></a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span class="entypo-logout"></span><span>  Log off</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" id="language-switch">中文</a>
+                    </li>
+                    <li>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="icon-gear"></span><span>  Settings</span></a>
+                        <ul role="menu" class="dropdown-setting dropdown-menu">
+
+                            <li class="theme-bg">
+                                <div id="button-bg"></div>
+                                <div id="button-bg2"></div>
+                                <div id="button-bg3"></div>
+                                <div id="button-bg5"></div>
+                                <div id="button-bg6"></div>
+                                <div id="button-bg7"></div>
+                                <div id="button-bg8"></div>
+                                <div id="button-bg9"></div>
+                                <div id="button-bg10"></div>
+                                <div id="button-bg11"></div>
+                                <div id="button-bg12"></div>
+                                <div id="button-bg13"></div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- /END OF TOP NAVBAR -->
+
+    <!-- SIDE MENU -->
+    <div id="skin-select">
+        <div id="logo">
+            <h3 id="navbar_title">Vehicle Alarm Platform</h3>
+            <span>v3.5</span>
+        </div>
+
+
+        <a id="toggle">
+            <span class="entypo-menu"></span>
+        </a>
+        <div class="dark">
+            <form action="#">
+                <span>
+                    <input type="text" name="search" value="" class="search rounded id_search"
+                        placeholder="Search Menu..." autofocus />
+                </span>
+            </form>
+        </div>
+        <div class="skin-part">
+            <div id="tree-wrap">
+                <div class="side-bar">
+                    <ul class="topnav menu-left-nest">
+                        <li>
+                            <a href="#" style="border-left:0px solid!important;" class="title-menu-left">
+                                <span class="dashboard-menu1">Dashboard</span>
+                                <i data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tooltip-tip ajax-load" href="#" title="Dashboard">
+                                <i class="icon-window"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tooltip-tip ajax-load" href="mytask.html" title="Dashboard">
+                                <i class="icon-view-list"></i>
+                                <span>My Processing</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="topnav menu-left-nest">
+                        <li>
+                            <a href="#" style="border-left:0px solid!important;" class="title-menu-left">
+                                <span class="safe-menu1">Security Alarm</span>
+                                <i data-toggle="tooltip" class="entypo-cog pull-right config-wrap"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tooltip-tip ajax-load" href="#" title="Blog App">
+                                <i class="icon-monitor"></i>
+                                <span>Safety</span>
+                            </a>
+                            <ul style="display: block;">
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load " href="index.html"><span style="font-weight: bold;font-size: 18px;">Collision Assistance</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#"><span>Airbag Burst Automatic Assistance</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#"><span>Medical Rescue Assistance</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#"><span>Love to Help Passers-by</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="tooltip-tip ajax-load" href="#" title="Blog App">
+                                <i class="icon-lock-open"></i>
+                                <span>Remote Control</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#"
+                                        title="Blog Detail"><span>Remote Car Door Emergency Opening</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#"
+                                        title="Blog Detail"><span>Car Parking Position Prompt</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="Blog Detail"><span>Remote Start</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="Blog Detail"><span>Remote Car Search</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#" title="Blog Detail"><span>Road Assistance</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#"
+                                        title="Blog Detail"><span>Full Voice Control Hands-free Phone</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#"
+                                        title="Blog Detail"><span>Full Voice Control Navigation Service</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="tooltip-tip ajax-load" href="#" title="Blog App">
+                                <i class="icon-heart"></i>
+                                <span>Vehicle Condition Detection</span>
+
+                            </a>
+                            <ul>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="carinfo.html"
+                                        title="Blog Detail"><span>Monthly Vehicle Condition Detection Report</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#"
+                                        title="Blog Detail"><span>Real-time On-demand Detection</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="tooltip-tip ajax-load" href="#" title="Blog App">
+                                <i class="icon-direction"></i>
+                                <span>Navigation</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#"
+                                        title="Blog Detail"><span>Full Voice Control Leading</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#"
+                                        title="Blog Detail"><span>Point of Interest Guide</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#"
+                                        title="Blog Detail"><span>Destination Setting Assistance</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="tooltip-tip ajax-load" href="#" title="Blog App">
+                                <i class="icon-warning"></i>
+                                <span>Security</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#"
+                                        title="Blog Detail"><span>Roadside Rescue Assistance</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#"
+                                        title="Blog Detail"><span>Stolen Vehicle Positioning</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#"
+                                        title="Blog Detail"><span>Stolen Vehicle Start Restriction</span></a>
+                                </li>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="#"
+                                        title="Blog Detail"><span>Stolen Vehicle Deceleration</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END OF SIDE MENU -->
+
+    <!--  PAPER WRAP -->
+    <div class="wrap-fluid" style="min-height: 94%; height: 94%;">
+        <div class="container-fluid paper-wrap bevel tlbr">
+
+            <!-- CONTENT -->
+            <!--TITLE -->
+            <div class="row">
+                <div id="paper-top">
+                    <div class="col-sm-3">
+                        <h2 class="tittle-content-header">
+                            <i class="icon-feed"></i>
+                            <span>Collision Assistance List</span>
+                        </h2>
+                    </div>
+
+                    <div class="col-sm-9">
+                        <div class="tittle-middle-header">
+
+                            <div class="alert" style="font-size: large;">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <span class="tittle-alert entypo-info-circled"></span>
+                                <span>   Welcome back, </span>
+                                <strong>user!</strong>
+                                <span>  You still have </span>
+                                <a style="color: red;" href="mytask.html"><strong><span id="count-span">4</span></strong></a>
+                                <span> Pending. Click to go </span>
+                                <a href="mytask.html">My Processing List</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ TITLE -->
+
+            <!-- BREADCRUMB -->
+            <ul id="breadcrumb">
+                <li>
+                    <a href="/"><span class="entypo-home"></span></a>
+                </li>
+                <li><i class="fa fa-lg fa-angle-right"></i>
+                </li>
+                <li>Safety</li>
+                <li><i class="fa fa-lg fa-angle-right"></i>
+                </li>
+                <li>Collision Assistance</li>
+                <li class="pull-right">
+                    <div class="input-group input-widget">
+                        <input style="border-radius:15px" id="filter" type="text" placeholder="Search..."
+                            class="form-control">
+                    </div>
+                </li>
+            </ul>
+            <!-- END OF BREADCRUMB -->
+
+            <div class="content-wrap">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="nest" id="Content_PageClose" style="color: black;">
+                            <div class="title-alt">
+                                <h6>Collision Assistance List</h6>
+                                <div class="titleClose">
+                                    <a class="gone" href="#Content_PageClose">
+                                        <span class="entypo-cancel"></span>
+                                    </a>
+                                </div>
+                                <div class="titleToggle">
+                                    <a class="nav-toggle-alt" href="#data-table">
+                                        <span class="entypo-up-open"></span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="body-nest" id="data-table">
+                                <table id="helptable" class="table-striped footable" data-filter="#filter"
+                                    data-filter-text-only="true">
+                                    <thead>
+                                        <tr>
+                                            <th >Time</th>
+                                            <th >Brand</th>
+                                            <th >Model</th>
+                                            <th >VIN</th>
+                                            <th >Name</th>
+                                            <th >Mobile</th>
+                                            <th data-sortable="false" >Location Information</th>
+                                            <th data-sortable="false" >Collision Information</th>
+                                            <th data-sortable="false" >Status</th>
+                                            <th data-sortable="false" style="text-align: center;" >Operation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="12">
+                                                <div class="pagination pagination-centered"></div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /END OF CONTENT -->
+
+                <!-- FOOTER -->
+                <div class="footer-space"></div>
+                <div id="footer">
+                    <div class="devider-footer-left"></div>
+                    <div class="time">
+                        <p id="spanDate"></p>
+                        <p id="clock"></p>
+                    </div>
+                    <div class="copyright">Copyright © 2023 Vehicle Networking Security Alarm Platform</div>
+                    <!-- / END OF FOOTER -->
+                </div>
+            </div>
+
+            <!--  END OF PAPER WRAP -->
+            <!-- MAIN EFFECT -->
+            <script type="text/javascript" src="assets/js/preloader.js"></script>
+            <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+            <script type="text/javascript" src="assets/js/app.js"></script>
+            <script type="text/javascript" src="assets/js/load.js"></script>
+            <script type="text/javascript" src="assets/js/main.js"></script>
+
+            <script src="assets/js/footable/js/footable.js?v=2-0-1" type="text/javascript"></script>
+            <script src="assets/js/footable/js/footable.sort.js?v=2-0-1" type="text/javascript"></script>
+            <script src="assets/js/footable/js/footable.filter.js?v=2-0-1" type="text/javascript"></script>
+            <script src="assets/js/footable/js/footable.paginate.js?v=2-0-1" type="text/javascript"></script>
+            <script src="assets/js/footable/js/footable.paginate.js?v=2-0-1" type="text/javascript"></script>
+            <script src="socket.io.js"></script>
+            <script src="app.js"></script>
+            <!-- END PAGE LEVEL JS-->
+        </div>
+    </div>
+</body>
+
+</html>

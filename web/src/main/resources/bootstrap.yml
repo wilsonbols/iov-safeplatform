@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: safeplatform
+  cloud:
+    servicecomb:
+      dashboard:
+        invocationProviderEnabled: true
+        governanceProviderEnabled: false
+        enabled: false
+        address: ${PAAS_CSE_DASHBOARD_ENDPOINT:http://servicecomb:30109}
+      service:
+        # Microservice name, keep it consistent with spring.application.name.
+        name: ${spring.application.name}
+        # Microservice version number, this example uses ServiceStage environment variable. It is recommended to keep this configuration method,
+        # When deploying, you don't need to manually modify the version number to prevent contract registration failure.
+        version: ${CAS_INSTANCE_VERSION:0.0.2}
+        # Application name. By default, only microservices with the same application name can discover each other.
+        application: ${CAS_APPLICATION_NAME:cariov}
+        # Environment name. Only microservices in the same environment can discover each other.
+        # Can take values development, testing, acceptance, production
+        environment: production
+      discovery:
+        # Registry address, this example uses ServiceStage environment variable. It is recommended to keep this configuration method,
+        # When deploying, you don't need to manually modify the address.
+        address: ${PAAS_CSE_SC_ENDPOINT:http://servicecomb:30100}
+      config:
+        # Configuration center address, this example uses ServiceStage environment variable. It is recommended to keep this configuration method,
+        # When deploying, you don't need to manually modify the address.
+        serverAddr: ${PAAS_CSE_CC_ENDPOINT:http://servicecomb:30110}
+        serverType: kie
+        kie:
+          customLabel: ${spring.application.name} # The default value is public
+          customLabelValue: default # The default value is an empty string
+      routeRule:
+        safeplatform:
+          - precedence: 1
+            route:
+              - weight: 20
+                tags:
+                  version: 3.4.10
+              - weight: 80
+                tags:
+                  version: ${CAS_INSTANCE_VERSION:0.0.2}

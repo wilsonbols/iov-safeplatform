@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.safeplatform.samples.web.dao.CollisionMapper">
+  <resultMap id="BaseResultMap" type="com.safeplatform.samples.web.dao.Collision">
+    <!--@mbg.generated-->
+    <!--@Table collision-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="vin" jdbcType="VARCHAR" property="vin" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="locationinfo" jdbcType="VARCHAR" property="locationinfo" />
+    <result column="collisioninfo" jdbcType="VARCHAR" property="collisioninfo" />
+    <result column="descriptioninfo" jdbcType="VARCHAR" property="descriptioninfo" />
+    <result column="assignee" jdbcType="VARCHAR" property="assignee" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, vin, "state", locationinfo, collisioninfo, descriptioninfo, assignee, "time"
+  </sql>
+
+
+  <resultMap id="CollisionListMap" type="com.safeplatform.samples.web.dao.CollisionList">
+
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="vin" jdbcType="VARCHAR" property="vin" />
+
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="mod" jdbcType="VARCHAR" property="mod" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="locationinfo" jdbcType="VARCHAR" property="locationinfo" />
+    <result column="collisioninfo" jdbcType="VARCHAR" property="collisioninfo" />
+    <result column="descriptioninfo" jdbcType="VARCHAR" property="descriptioninfo" />
+
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+  </resultMap>
+
+
+  <select id="selectCollisionList" parameterType="java.lang.String" resultMap="CollisionListMap">
+    SELECT a.ID, a.vin, b.brand, b.mod, b.name, b.phone, a.locationinfo, a.collisioninfo, a.descriptioninfo, a.state, a.time FROM collision a
+    INNER JOIN vehicle b ON a.vin = b.vin
+    WHERE a.assignee = #{assignee,jdbcType=VARCHAR}
+    ORDER BY a.time desc
+  </select>
+
+
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from collision
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from collision
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.safeplatform.samples.web.dao.Collision">
+    <!--@mbg.generated-->
+    insert into collision (id, vin, "state", 
+      locationinfo, collisioninfo, descriptioninfo, 
+      assignee, "time")
+    values (#{id,jdbcType=INTEGER}, #{vin,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{locationinfo,jdbcType=VARCHAR}, #{collisioninfo,jdbcType=VARCHAR}, #{descriptioninfo,jdbcType=VARCHAR}, 
+      #{assignee,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.safeplatform.samples.web.dao.Collision">
+    <!--@mbg.generated-->
+    insert into collision
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="vin != null">
+        vin,
+      </if>
+      <if test="state != null">
+        "state",
+      </if>
+      <if test="locationinfo != null">
+        locationinfo,
+      </if>
+      <if test="collisioninfo != null">
+        collisioninfo,
+      </if>
+      <if test="descriptioninfo != null">
+        descriptioninfo,
+      </if>
+      <if test="assignee != null">
+        assignee,
+      </if>
+      <if test="time != null">
+        "time",
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="vin != null">
+        #{vin,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="locationinfo != null">
+        #{locationinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="collisioninfo != null">
+        #{collisioninfo,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptioninfo != null">
+        #{descriptioninfo,jdbcType=VARCHAR},
+      </if>
+      <if test="assignee != null">
+        #{assignee,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.safeplatform.samples.web.dao.Collision">
+    <!--@mbg.generated-->
+    update collision
+    <set>
+      <if test="vin != null">
+        vin = #{vin,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        "state" = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="locationinfo != null">
+        locationinfo = #{locationinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="collisioninfo != null">
+        collisioninfo = #{collisioninfo,jdbcType=VARCHAR},
+      </if>
+      <if test="descriptioninfo != null">
+        descriptioninfo = #{descriptioninfo,jdbcType=VARCHAR},
+      </if>
+      <if test="assignee != null">
+        assignee = #{assignee,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        "time" = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.safeplatform.samples.web.dao.Collision">
+    <!--@mbg.generated-->
+    update collision
+    set vin = #{vin,jdbcType=VARCHAR},
+      "state" = #{state,jdbcType=VARCHAR},
+      locationinfo = #{locationinfo,jdbcType=VARCHAR},
+      collisioninfo = #{collisioninfo,jdbcType=VARCHAR},
+      descriptioninfo = #{descriptioninfo,jdbcType=VARCHAR},
+      assignee = #{assignee,jdbcType=VARCHAR},
+      "time" = #{time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
