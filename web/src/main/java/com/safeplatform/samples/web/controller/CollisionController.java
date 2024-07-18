@@ -66,7 +66,16 @@ public class CollisionController {
         return consumerService.assignEmergencyInfo(id, assignee);
     }
 
-    
+    @GetMapping("/openCarDoor")
+    public ResultModel openCarDoor(@RequestParam String vin) {
+        ResultModel resultModel = new ResultModel();
+        if (Strings.isNullOrEmpty(vin)) {
+            resultModel.setErrCode(1);
+            resultModel.setMsg("vin Parameter cannot be empty");
+            return resultModel;
+        }
+        return consumerService.control(vin);
+    }
 }
 
 

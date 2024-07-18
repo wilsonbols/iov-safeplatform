@@ -13,6 +13,16 @@ $.ajax({
     }
 });
 
+function openCarDoor(vin) {
+    $.ajax({
+        url: "/api/openCarDoor?vin=" + vin,
+        type: 'GET',
+        success: function(res) {
+            alert(res.msg);
+        }
+    });
+}
+
 function redirectCarInfo(vin) {
     window.location.href = "/carinfo.html?vin=" + vin;
 }
