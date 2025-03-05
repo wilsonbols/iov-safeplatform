@@ -1,11 +1,9 @@
 ---
 name: Change Report
-description: File a bug report.
-title: "[Bug]: "
-labels: ["bug", "triage"]
-projects: ["octo-org/1", "octo-org/44"]
-assignees:
-  - octocat
+about: Describe this issue template's purpose here.
+title: "[Issue]："
+labels: ''
+assignees: wilsonbols
 body:
   - type: markdown
     attributes:
